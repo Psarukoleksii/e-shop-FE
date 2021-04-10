@@ -27,7 +27,7 @@ export const AdminPanel = ({Logout}: any) => {
 
   return (
     <div>
-      <h2>Admin panel</h2>
+      <h2>Admin panelll</h2>
       <div className={classes.accordionWrapper}>
         <Accordion>
           <AccordionSummary
