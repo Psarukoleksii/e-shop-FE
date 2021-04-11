@@ -6,6 +6,8 @@ export const CONSTANTS = {
   REFRESH_TOKEN: 'refresh_token',
 
   form: {
+    TEXT: 'text',
+    NUMBER: 'number',
     POST: 'POST',
     SUBMIT: 'submit',
     firstName: 'firstName',
@@ -17,5 +19,14 @@ export const CONSTANTS = {
 
   product: {
     category: 'category',
+    name: 'name',
+    image: 'image',
+    producer: 'producer',
+    mass: 'mass',
+    weight: 'weight',
+    counterInStorage: 'counterInStorage',
+    counterOfPurchases: 'counterOfPurchases'
   }
 }
+
+

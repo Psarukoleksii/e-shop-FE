@@ -1,50 +1,89 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
-import {makeStyles} from "@material-ui/core/styles";
-// import Link from '@material-ui/core/Link';
+import React, {useState} from 'react';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+import InputBase from '@material-ui/core/InputBase';
+import MenuIcon from '@material-ui/icons/Menu';
+import SearchIcon from '@material-ui/icons/Search';
+import AccountCircle from '@material-ui/icons/AccountCircle';
 import {AuthConsumer} from "../../context";
+import {Link} from 'react-router-dom';
 import {ROUTERS} from "../../config";
+import {useHeaderStyles} from "../../styles";
+import {ModalWindow} from "../UI";
+import {CategoriesList} from "../categoriesList";
 
 export const Header = () => {
+  const classes = useHeaderStyles();
+  const [openModal, setOpenModal] = useState<boolean>(false);
+  const menuId = 'primary-search-account-menu';
 
-  const useStyles = makeStyles(() => ({
-    header: {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "space-between"
-    },
-    link: {
-      width: '2%'
-    },
-    img: {
-      width: '100%'
-    }
-  }));
+  const handleOpenModal = () => {
+    setOpenModal(true);
+  };
 
-  const classes = useStyles();
-
-  // @ts-ignore
   return (
-    <div className={classes.header}>
-      <Link to={ROUTERS.homePage}><img src='https://static-sl.insales.ru/files/1/1171/14550163/original/markom_logo.svg' alt="logo"/></Link>
-      <AuthConsumer>
-        {
-          content => (
-            <>
-              {content.isLoginUser ?
-                <Link className={classes.link} to={ROUTERS.profile}><img className={classes.img}
-                                                                 src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLhYhRYXrrS3OGaE4hCHZCQh99kuca9aBHCg&usqp=CAU'
-                                                                 alt=""/></Link>
-                :
-                <Link className={classes.link} to={ROUTERS.authorization}><img className={classes.img}
-                                                                          src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLhYhRYXrrS3OGaE4hCHZCQh99kuca9aBHCg&usqp=CAU'
-                                                                          alt=""/></Link>
-              }
-            </>
-          )
-        }
-      </AuthConsumer>
+    <div className={classes.grow}>
+      <AppBar position="static" style={{background: "#2b5329"}}>
+        <Toolbar>
+          <Typography className={classes.title} variant="h6" noWrap>
+            <Link to={ROUTERS.homePage}>
+              <img className={classes.titleImg}
+                   src='https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/dab60938212491.5968c68fa9113.gif'
+                   alt="logo"/>
+            </Link>
+          </Typography>
+          <IconButton
+            edge="start"
+            className={classes.menuButton}
+            color="inherit"
+            aria-label="open drawer"
+            onClick={handleOpenModal}
+          >
+            Catalog
+            <MenuIcon/>
+          </IconButton>
+          <div className={classes.search}>
+            <div className={classes.searchIcon}>
+              <SearchIcon/>
+            </div>
+            <InputBase
+              placeholder="Search…"
+              classes={{
+                root: classes.inputRoot,
+                input: classes.inputInput,
+              }}
+              inputProps={{'aria-label': 'search'}}
+            />
+          </div>
+          <div className={classes.grow}/>
+          <div>
+            <IconButton
+              className={classes.icoProfile}
+              edge="end"
+              aria-label="account of current user"
+              aria-controls={menuId}
+              aria-haspopup="true"
+              color="inherit"
+            >
+              <AuthConsumer>
+                {
+                  content => (
+                    <Link
+                      to={content.isLoginUser ? ROUTERS.profile : ROUTERS.authorization}>
+                      <AccountCircle/>
+                    </Link>
+                  )
+                }
+              </AuthConsumer>
+            </IconButton>
+          </div>
+        </Toolbar>
+        <ModalWindow openModal={openModal} setOpenModal={setOpenModal}>
+          <CategoriesList setOpenModal={setOpenModal} />
+        </ModalWindow>
+      </AppBar>
     </div>
-
-  )
+  );
 }
