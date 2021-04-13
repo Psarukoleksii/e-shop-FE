@@ -11,6 +11,7 @@ import {CONSTANTS} from "../../config";
 import {Input} from "../UI";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
+import {FormControl, TextField} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   accordionWrapper: {
@@ -30,7 +31,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const AdminPanel = ({Logout}: any) => {
-
   const {formik} = useAddProduct()
   const classes = useStyles();
 
@@ -53,93 +53,124 @@ export const AdminPanel = ({Logout}: any) => {
           <AccordionDetails>
             <Typography>
               <FormikProvider value={formik}>
-                <form className={classes.form} action={CONSTANTS.form.POST} onSubmit={formik.handleSubmit}>
-                  <Grid container spacing={2}>
-                    <Grid item xs={12} sm={6}>
-                      <Input
-                        id={CONSTANTS.product.category}
-                        label={CONSTANTS.product.category}
-                        name={CONSTANTS.product.category}
-                        onChange={formik.handleChange}
-                        value={formik.values.category}
-                      />
+                <form className={classes.form} noValidate action={CONSTANTS.form.POST} onSubmit={formik.handleSubmit}>
+                  <FormControl error>
+                    <Grid container spacing={2}>
+                      <Grid item xs={12} sm={6}>
+                        <Input
+                          id={CONSTANTS.product.category}
+                          label={CONSTANTS.product.category}
+                          name={CONSTANTS.product.category}
+                          onChange={formik.handleChange}
+                          value={formik.values.category}
+                          errors={formik.errors}
+                        />
+                      </Grid>
+                      <Grid item xs={12} sm={6}>
+                        <Input
+                          id={CONSTANTS.product.name}
+                          label={CONSTANTS.product.name}
+                          name={CONSTANTS.product.name}
+                          onChange={formik.handleChange}
+                          value={formik.values.name}
+                          errors={formik.errors}
+                        />
+                      </Grid>
+                      <Grid item xs={12} sm={6}>
+                        <Input
+                          id={CONSTANTS.product.image}
+                          label={CONSTANTS.product.image}
+                          name={CONSTANTS.product.image}
+                          onChange={formik.handleChange}
+                          value={formik.values.image}
+                          errors={formik.errors}
+                        />
+                      </Grid>
+                      <Grid item xs={12} sm={6}>
+                        <Input
+                          id={CONSTANTS.product.producer}
+                          label={CONSTANTS.product.producer}
+                          name={CONSTANTS.product.producer}
+                          onChange={formik.handleChange}
+                          value={formik.values.producer}
+                          errors={formik.errors}
+                        />
+                      </Grid>
+                      <Grid item xs={12} sm={6}>
+                        <Input
+                          type={CONSTANTS.form.NUMBER}
+                          id={CONSTANTS.product.price}
+                          label={CONSTANTS.product.price}
+                          name={CONSTANTS.product.price}
+                          onChange={formik.handleChange}
+                          value={formik.values.price}
+                          errors={formik.errors}
+                        />
+                      </Grid>
+                      <Grid item xs={12} sm={6}>
+                        <Input
+                          id={CONSTANTS.product.currency}
+                          label={CONSTANTS.product.currency}
+                          name={CONSTANTS.product.currency}
+                          onChange={formik.handleChange}
+                          value={formik.values.currency}
+                          errors={formik.errors}
+                        />
+                      </Grid>
+                      <Grid item xs={12} sm={6}>
+                        <Input
+                          id={CONSTANTS.product.mass}
+                          label={CONSTANTS.product.mass}
+                          name={CONSTANTS.product.mass}
+                          onChange={formik.handleChange}
+                          value={formik.values.mass}
+                          type={CONSTANTS.form.NUMBER}
+                          errors={formik.errors}
+                        />
+                      </Grid>
+                      <Grid item xs={12} sm={6}>
+                        <Input
+                          id={CONSTANTS.product.weight}
+                          label={CONSTANTS.product.weight}
+                          name={CONSTANTS.product.weight}
+                          onChange={formik.handleChange}
+                          value={formik.values.weight}
+                          errors={formik.errors}
+                        />
+                      </Grid>
+                      <Grid item xs={12} sm={6}>
+                        <Input
+                          id={CONSTANTS.product.counterInStorage}
+                          label={CONSTANTS.product.counterInStorage}
+                          name={CONSTANTS.product.counterInStorage}
+                          onChange={formik.handleChange}
+                          value={formik.values.counterInStorage}
+                          type={CONSTANTS.form.NUMBER}
+                          errors={formik.errors}
+                        />
+                      </Grid>
+                      <Grid item xs={12} sm={6}>
+                        <Input
+                          id={CONSTANTS.product.counterOfPurchases}
+                          label={CONSTANTS.product.counterOfPurchases}
+                          name={CONSTANTS.product.counterOfPurchases}
+                          onChange={formik.handleChange}
+                          value={formik.values.counterOfPurchases}
+                          type={CONSTANTS.form.NUMBER}
+                          errors={formik.errors}
+                        />
+                      </Grid>
                     </Grid>
-                    <Grid item xs={12} sm={6}>
-                      <Input
-                        id={CONSTANTS.product.name}
-                        label={CONSTANTS.product.name}
-                        name={CONSTANTS.product.name}
-                        onChange={formik.handleChange}
-                        value={formik.values.name}
-                      />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                      <Input
-                        id={CONSTANTS.product.image}
-                        label={CONSTANTS.product.image}
-                        name={CONSTANTS.product.image}
-                        onChange={formik.handleChange}
-                        value={formik.values.image}
-                      />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                      <Input
-                        id={CONSTANTS.product.producer}
-                        label={CONSTANTS.product.producer}
-                        name={CONSTANTS.product.producer}
-                        onChange={formik.handleChange}
-                        value={formik.values.producer}
-                      />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                      <Input
-                        id={CONSTANTS.product.mass}
-                        label={CONSTANTS.product.mass}
-                        name={CONSTANTS.product.mass}
-                        onChange={formik.handleChange}
-                        value={formik.values.mass}
-                        type={CONSTANTS.form.NUMBER}
-                      />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                      <Input
-                        id={CONSTANTS.product.weight}
-                        label={CONSTANTS.product.weight}
-                        name={CONSTANTS.product.weight}
-                        onChange={formik.handleChange}
-                        value={formik.values.weight}
-                      />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                      <Input
-                        id={CONSTANTS.product.counterInStorage}
-                        label={CONSTANTS.product.counterInStorage}
-                        name={CONSTANTS.product.counterInStorage}
-                        onChange={formik.handleChange}
-                        value={formik.values.counterInStorage}
-                        type={CONSTANTS.form.NUMBER}
-                      />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                      <Input
-                        id={CONSTANTS.product.counterOfPurchases}
-                        label={CONSTANTS.product.counterOfPurchases}
-                        name={CONSTANTS.product.counterOfPurchases}
-                        onChange={formik.handleChange}
-                        value={formik.values.counterOfPurchases}
-                        type={CONSTANTS.form.NUMBER}
-                      />
-                    </Grid>
-                  </Grid>
-                  <Button
-                    type={BUTTON.SUBMIT}
-                    fullWidth
-                    variant="contained"
-                    color="primary"
-                    className={classes.submit}
-                  >
-                    Add product
-                  </Button>
+                    <Button
+                      type={BUTTON.SUBMIT}
+                      fullWidth
+                      variant="contained"
+                      color="primary"
+                      className={classes.submit}
+                    >
+                      Add product
+                    </Button>
+                  </FormControl>
                 </form>
               </FormikProvider>
             </Typography>

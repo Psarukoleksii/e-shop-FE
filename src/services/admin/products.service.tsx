@@ -1,6 +1,5 @@
 import {handleAddProduct} from "../../actions";
 
-
 class AdminProductsService {
   async addProduct ({category, name, image, producer, mass, weight, counterInStorage, counterOfPurchases}:any) {
     const product = {

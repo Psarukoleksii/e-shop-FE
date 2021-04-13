@@ -21,6 +21,8 @@ export const CONSTANTS = {
     category: 'category',
     name: 'name',
     image: 'image',
+    price: 'price',
+    currency: 'currency',
     producer: 'producer',
     mass: 'mass',
     weight: 'weight',

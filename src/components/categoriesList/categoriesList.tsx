@@ -5,9 +5,9 @@ import {Link} from 'react-router-dom';
 import {ROUTERS} from "../../config";
 
 export const CategoriesList = ({setOpenModal}: any) => {
-  const {allCategories, loading} = useGetAllCategories()
+  const {allCategories, loading} = useGetAllCategories();
 
-  if (loading) return <Loading/>
+  if (loading) return <Loading/>;
 
   return (
     <>
@@ -15,7 +15,7 @@ export const CategoriesList = ({setOpenModal}: any) => {
         allCategories.data.map((value: string) => {
           return (
             <div>
-              <Link style={{color: "black"}} onClick={()=>setOpenModal(false)} to={`${ROUTERS.categories}/${value}`}>
+              <Link style={{color: "black"}} onClick={() => setOpenModal(false)} to={`${ROUTERS.categories}/${value}`}>
                 {value}
               </Link>
             </div>
@@ -24,4 +24,4 @@ export const CategoriesList = ({setOpenModal}: any) => {
       }
     </>
   )
-}
+};

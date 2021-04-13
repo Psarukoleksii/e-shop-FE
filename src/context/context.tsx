@@ -34,7 +34,7 @@ const AuthProvider = ({ children }: any) => {
     // @ts-ignore
     dispatch({type: USER_ALREADY_LOGOUT});
   }
-  console.log(isLoginUser);
+
   return <Provider value={{isLoginUser, userLogout, userSignIn}}>{children}</Provider>
 }
 

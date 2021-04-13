@@ -12,15 +12,18 @@ export const useAddProduct = () => {
       category : CONSTANTS.EMPTY_STRING,
       name: CONSTANTS.EMPTY_STRING,
       image: CONSTANTS.EMPTY_STRING,
+      price: 0,
+      currency: CONSTANTS.EMPTY_STRING,
       producer: CONSTANTS.EMPTY_STRING,
-      mass: null,
+      mass: 0,
       weight: CONSTANTS.EMPTY_STRING,
-      counterInStorage: null,
-      counterOfPurchases: null
+      counterInStorage: 0,
+      counterOfPurchases: 0
     },
     validationSchema: productSchema,
     onSubmit: async values => {
       await adminProductService.addProduct(values);
+
     }
   });
 

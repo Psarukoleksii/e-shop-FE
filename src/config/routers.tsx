@@ -4,6 +4,7 @@ export const ROUTERS = {
   profile: '/profile',
   categories: '/categories',
   dynamicVars : {
-    name: '/:name'
+    name: '/:name',
+    id: '/:id',
   }
 }

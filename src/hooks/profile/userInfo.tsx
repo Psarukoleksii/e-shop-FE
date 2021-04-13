@@ -9,7 +9,7 @@ export const useUserData = () => {
     const info = await profileService.profileDetails();
     setInfoUser(info);
     setLoading(false)
-  }
+  };
 
   useEffect(()=>{
     handleGetUserData();

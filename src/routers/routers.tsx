@@ -1,9 +1,11 @@
 import React from 'react';
-import {Switch, Route} from 'react-router-dom';
-import {Authorization, CategoryWithProducts, Home, Profile} from "../pages";
+import {Route, Switch} from 'react-router-dom';
+import {Authorization, CategoryWithProducts, DetailsProduct, Home, Profile} from "../pages";
 import {ROUTERS} from "../config";
+import {ProductsConsumer} from "../context";
 
 export const Routers = () => {
+
   return (
     <Switch>
       <Route path={ROUTERS.homePage} exact>
@@ -15,8 +17,19 @@ export const Routers = () => {
       <Route path={ROUTERS.profile}>
         <Profile/>
       </Route>
-      <Route path={`${ROUTERS.categories}${ROUTERS.dynamicVars.name}`}>
-        <CategoryWithProducts />
+      <Route path={`${ROUTERS.categories}${ROUTERS.dynamicVars.name}`} exact>
+        <ProductsConsumer>
+          {
+            (context:any) => <CategoryWithProducts context={context}/>
+          }
+        </ProductsConsumer>
+      </Route>
+      <Route path={`${ROUTERS.categories}${ROUTERS.dynamicVars.name}${ROUTERS.dynamicVars.id}`} exact>
+        <ProductsConsumer>
+          {
+            (context: any) => <DetailsProduct context={context} />
+          }
+        </ProductsConsumer>
       </Route>
     </Switch>
   )
