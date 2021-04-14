@@ -5,3 +5,6 @@ export * from './userPanel';
 export * from './loading';
 export * from './UI';
 export * from './categoriesList';
+export * from './categories';
+export * from './subCategoryWithProducts';
+export * from './productList';

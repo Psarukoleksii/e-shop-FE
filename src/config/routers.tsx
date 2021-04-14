@@ -6,5 +6,6 @@ export const ROUTERS = {
   dynamicVars : {
     name: '/:name',
     id: '/:id',
+    subName: '/:subname',
   }
 }

@@ -6,8 +6,8 @@ export const useGetAllCategories = () => {
   const [loading, setLoading] = useState(true);
 
   const handleGetCategoriesData = async () => {
-    const response = await getAllCategories();
-    setAllCategories(response);
+    const { data } = await getAllCategories();
+    setAllCategories(data);
     setLoading(false);
   };
 
@@ -15,5 +15,5 @@ export const useGetAllCategories = () => {
     handleGetCategoriesData();
   }, []);
 
-  return { allCategories, loading };
+  return { allCategories, loading};
 };

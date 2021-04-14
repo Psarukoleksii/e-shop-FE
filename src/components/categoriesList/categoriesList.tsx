@@ -12,12 +12,23 @@ export const CategoriesList = ({setOpenModal}: any) => {
   return (
     <>
       {
-        allCategories.data.map((value: string) => {
+        allCategories.map((value: any, index: number) => {
           return (
-            <div>
-              <Link style={{color: "black"}} onClick={() => setOpenModal(false)} to={`${ROUTERS.categories}/${value}`}>
-                {value}
-              </Link>
+            <div key={index}>
+              <Link style={{color: "black"}} onClick={() => setOpenModal(false)}
+                    to={`${ROUTERS.categories}/${value.category}`}>{value.category}</Link>
+              {
+                value.subCategory.map((items: any, index: number) => {
+                  return (
+                    <div key={index}>
+                      <Link style={{color: "black"}} onClick={() => setOpenModal(false)}
+                            to={`${ROUTERS.categories}/${value.category}/${items.subCategory}`}>
+                        {items.subCategory}
+                      </Link>
+                    </div>
+                  )
+                })
+              }
             </div>
           )
         })

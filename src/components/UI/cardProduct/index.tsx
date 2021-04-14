@@ -12,6 +12,7 @@ import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
+    marginTop: 60,
   },
   media: {
     height: 170,
@@ -38,9 +39,6 @@ export const CardProduct = ({image, title, id, handleGetIdProduct}: any) => {
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Button size="small" color="primary">
-            Share
-          </Button>
           <Button size="small" color="primary" onClick={()=> handleGetIdProduct(id)}>
             Learn More
           </Button>

@@ -1,10 +1,11 @@
 import React, {useReducer} from 'react';
-import {GET_INFO_ABOUT_PRODUCT, SET_ALL_PRODUCTS} from "../actionType";
+import {ADD_SUBCATEGORIES, GET_INFO_ABOUT_PRODUCT, SET_ALL_PRODUCTS} from "../actionType";
 
 // @ts-ignore
-const {Provider, Consumer} = React.createContext({
+const ProductsContext = React.createContext({
   allProducts: [],
   detailsOfProduct: [],
+  subCategories: [],
 });
 
 const reducer = (state: any, action: any) => {
@@ -14,8 +15,11 @@ const reducer = (state: any, action: any) => {
     }
     case GET_INFO_ABOUT_PRODUCT : {
       const id = action.payload;
-      const findProduct = state.allProducts[0].products.find((v:any)=> v._id === id);
+      const findProduct = state.allProducts[0].products.find((v: any) => v._id === id);
       return {...state, detailsOfProduct: [findProduct]};
+    }
+    case ADD_SUBCATEGORIES : {
+      return {...state, subCategories: action.payload};
     }
     default : {
       return state;
@@ -25,8 +29,8 @@ const reducer = (state: any, action: any) => {
 
 const ProductsProvider = ({children}: any) => {
   // @ts-ignore
-  const [{allProducts, detailsOfProduct}, dispatch] = useReducer<any>(reducer,
-    {allProducts: [], detailsOfProduct: []});
+  const [{allProducts, detailsOfProduct, subCategories}, dispatch] = useReducer<any>(reducer,
+    {allProducts: [], detailsOfProduct: [], subcategories: []});
 
   const handleAllProducts = (products: any) => {
     // @ts-ignore
@@ -44,8 +48,24 @@ const ProductsProvider = ({children}: any) => {
     })
   };
 
-  // @ts-ignore
-  return <Provider value={{allProducts, handleAllProducts, detailsOfProduct, handleGetInfoAboutProduct}}>{children}</Provider>
+  const handleAddSubcategories = (subcategories: any) => {
+    // @ts-ignore
+    dispatch({
+      type: ADD_SUBCATEGORIES,
+      payload: subcategories
+    })
+  };
+
+  const providerValues = {
+    allProducts,
+    handleAllProducts,
+    detailsOfProduct,
+    handleGetInfoAboutProduct,
+    subCategories,
+    handleAddSubcategories
+  };
+
+  return <ProductsContext.Provider value={providerValues}>{children}</ProductsContext.Provider>
 }
 
-export {ProductsProvider, Consumer as ProductsConsumer};
+export {ProductsProvider, ProductsContext};
