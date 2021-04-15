@@ -8,3 +8,4 @@ export * from './categoriesList';
 export * from './categories';
 export * from './subCategoryWithProducts';
 export * from './productList';
+export * from './rateProduct';

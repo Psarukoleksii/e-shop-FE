@@ -28,6 +28,10 @@ export const CONSTANTS = {
     weight: 'weight',
     counterInStorage: 'counterInStorage',
     counterOfPurchases: 'counterOfPurchases'
+  },
+
+  errorMessages: {
+    signInForThisAction: 'for this action'
   }
 }
 

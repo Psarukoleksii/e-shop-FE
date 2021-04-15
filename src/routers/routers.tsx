@@ -28,9 +28,9 @@ export const Routers = () => {
           <SubCategoryWithProducts />
         </ProductsListLayout>
       </Route>
-      {/*<Route path={`${ROUTERS.categories}${ROUTERS.dynamicVars.name}${ROUTERS.dynamicVars.id}`} exact>*/}
-      {/*  <DetailsProduct/>*/}
-      {/*</Route>*/}
+      <Route path={`${ROUTERS.products}${ROUTERS.dynamicVars.id}`} exact>
+        <DetailsProduct/>
+      </Route>
     </Switch>
   )
 }

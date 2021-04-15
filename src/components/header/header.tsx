@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -7,7 +7,7 @@ import InputBase from '@material-ui/core/InputBase';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import {AuthConsumer} from "../../context";
+import {AuthContext} from "../../context";
 import {Link} from 'react-router-dom';
 import {ROUTERS} from "../../config";
 import {useHeaderStyles} from "../../styles";
@@ -17,6 +17,7 @@ import {CategoriesList} from "../categoriesList";
 export const Header = () => {
   const classes = useHeaderStyles();
   const [openModal, setOpenModal] = useState<boolean>(false);
+  const {isLoginUser} = useContext(AuthContext);
   const menuId = 'primary-search-account-menu';
 
   const handleOpenModal = () => {
@@ -67,21 +68,15 @@ export const Header = () => {
               aria-haspopup="true"
               color="inherit"
             >
-              <AuthConsumer>
-                {
-                  content => (
-                    <Link
-                      to={content.isLoginUser ? ROUTERS.profile : ROUTERS.authorization}>
-                      <AccountCircle/>
-                    </Link>
-                  )
-                }
-              </AuthConsumer>
+              <Link
+                to={isLoginUser ? ROUTERS.profile : ROUTERS.authorization}>
+                <AccountCircle/>
+              </Link>
             </IconButton>
           </div>
         </Toolbar>
         <ModalWindow openModal={openModal} setOpenModal={setOpenModal}>
-          <CategoriesList setOpenModal={setOpenModal} />
+          <CategoriesList setOpenModal={setOpenModal}/>
         </ModalWindow>
       </AppBar>
     </div>

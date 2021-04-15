@@ -1,13 +1,17 @@
 import React from 'react';
 import {DetailsItem} from "./detailsItem";
+import {useDetailsProducts} from "../../hooks/products/detailsProduct.hook";
+import {Loading} from "../../components";
 
-export const DetailsProduct = ({context}: any) => {
-  
+export const DetailsProduct = () => {
+
+  const {loading, details} = useDetailsProducts();
+
+  if (loading) return <Loading/>;
+
   return (
     <>
-      {
-        context.detailsOfProduct.map((value:any)=> <DetailsItem items={value}/>)
-      }
+      <DetailsItem items={details}/>
     </>
   )
 };

@@ -1,7 +1,6 @@
 import React, {useReducer} from 'react';
 import {ADD_SUBCATEGORIES, GET_INFO_ABOUT_PRODUCT, SET_ALL_PRODUCTS} from "../actionType";
 
-// @ts-ignore
 const ProductsContext = React.createContext({
   allProducts: [],
   detailsOfProduct: [],

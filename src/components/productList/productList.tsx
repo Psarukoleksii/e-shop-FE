@@ -2,13 +2,14 @@ import React from 'react';
 import Grid from "@material-ui/core/Grid";
 import {CardProduct} from "../UI";
 import {useHistory} from "react-router-dom";
+import {ROUTERS} from "../../config";
 
 export const ProductList = ({products}:any) => {
   const history = useHistory();
 
   const handleGetIdProduct = (id:string) => {
-    // history.push(`/categories/${name}/${id}`)
-  }
+    history.push(`${ROUTERS.products}/${id}`);
+  };
 
   return (
     <>

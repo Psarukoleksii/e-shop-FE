@@ -1,23 +1,26 @@
-import React, {useEffect} from 'react'
+import React, {useContext, useEffect} from 'react'
 import {AdminPanel, UserPanel} from "../../../components";
-import {ROUTERS} from "../../../config";
-import {CONSTANTS} from "../../../config/constants";
+import {ROUTERS, CONSTANTS} from "../../../config";
+import {AuthContext} from "../../../context";
 
-export const ProfileItem = ({infoUser, context}: any) => {
+export const ProfileItem = ({infoUser}: any) => {
+
+  const { userLogout, userSignIn, setUserInfo} = useContext(AuthContext);
 
   useEffect(()=>{
-    context.userSignIn();
-  }, [])
+    userSignIn();
+    setUserInfo(infoUser);
+  }, []);
 
   const Logout = () => {
-    context.userLogout();
-    window.location.href = ROUTERS.homePage
+    userLogout();
+    window.location.href = ROUTERS.homePage;
     localStorage.removeItem(CONSTANTS.ACCESS_TOKEN);
     localStorage.removeItem(CONSTANTS.REFRESH_TOKEN);
-  }
+  };
 
   if(infoUser.role === CONSTANTS.ADMIN) {
-    return <AdminPanel Logout={Logout}/>
+    return <AdminPanel Logout={Logout}/>;
   }
 
   return (
@@ -25,4 +28,4 @@ export const ProfileItem = ({infoUser, context}: any) => {
       <UserPanel Logout={Logout} infoUser={infoUser} />
     </div>
   )
-}
+};
