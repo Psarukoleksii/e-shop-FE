@@ -4,6 +4,7 @@ export const ROUTERS = {
   profile: '/profile',
   categories: '/categories',
   products: '/products',
+  basket: '/basket',
   dynamicVars : {
     name: '/:name',
     id: '/:id',

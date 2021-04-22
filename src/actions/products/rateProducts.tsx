@@ -5,3 +5,5 @@ export const addRateProduct = async (user_id: string, product_id: string, rate: 
   product_id,
   rate
 });
+
+export const getRateProduct = async (id: any) => AXIOS.get('/products/getRate', {params: {id}})

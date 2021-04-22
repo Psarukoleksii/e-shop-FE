@@ -14,4 +14,4 @@ export const DetailsProduct = () => {
       <DetailsItem items={details}/>
     </>
   )
-};
+}

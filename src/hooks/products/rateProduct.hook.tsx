@@ -1,15 +1,17 @@
-import {useContext, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import {AuthContext} from "../../context";
 import {useParams} from "react-router";
-import {addRateProduct} from "../../actions/products/rateProducts";
+import {addRateProduct, getRateProduct} from "../../actions/products/rateProducts";
+import {MatchParams} from "../../interfaces";
 
 export const useRateProduct = () => {
   const [rate, setRate] = useState<any>();
   const { isLoginUser, userInformation } = useContext(AuthContext);
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [success, setSuccess] = useState<boolean>(false);
-  const { id }: any = useParams();
-
+  const [rating, setRating] = useState<number>();
+  const { id }: MatchParams = useParams();
+  console.log(rate);
   const addRate = async () => {
     if(!isLoginUser){
       return setOpenModal(true);
@@ -26,5 +28,17 @@ export const useRateProduct = () => {
     return `${value}`;
   }
 
-  return {valuetext, addRate, openModal, setOpenModal, success};
+  const handleGetRateProduct = async () => {
+    const {data} = await getRateProduct(id);
+    if(!data.length){
+      return ;
+    }
+    setRating(data[0].avg.toFixed(1))
+  }
+
+  useEffect(()=>{
+    handleGetRateProduct();
+  }, [])
+
+  return {valuetext, addRate, openModal, setOpenModal, success, rating};
 };

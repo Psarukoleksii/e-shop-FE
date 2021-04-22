@@ -1,6 +1,6 @@
 import React from 'react';
 import {Route, Switch} from 'react-router-dom';
-import {Authorization, CategoryWithProducts, DetailsProduct, Home, Profile} from "../pages";
+import {Authorization, Basket, CategoryWithProducts, DetailsProduct, Home, Profile} from "../pages";
 import {ROUTERS} from "../config";
 import {ProductsListLayout} from "../layouts/productsListLayout";
 import {Categories, SubCategoryWithProducts} from "../components";
@@ -30,6 +30,9 @@ export const Routers = () => {
       </Route>
       <Route path={`${ROUTERS.products}${ROUTERS.dynamicVars.id}`} exact>
         <DetailsProduct/>
+      </Route>
+      <Route path={ROUTERS.basket}>
+        <Basket />
       </Route>
     </Switch>
   )

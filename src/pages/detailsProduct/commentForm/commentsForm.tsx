@@ -1,15 +1,13 @@
 import React from 'react';
-import {useAddComment} from "../../../hooks";
 import {FormikProvider} from "formik";
 import {CONSTANTS, ROUTERS} from "../../../config";
 import {Button, FormHelperText, Grid, TextareaAutosize} from "@material-ui/core";
 import {ModalWindow} from "../../../components";
 import {Link} from "react-router-dom";
 import {Alert} from "@material-ui/lab";
+import {ICommentForm} from "../../../interfaces";
 
-export const CommentsForm = () => {
-
-  const { formik, setOpenModal, openModal, success } = useAddComment();
+export const CommentsForm: React.FC<ICommentForm> = ({ formik, setOpenModal, openModal, success }: ICommentForm) => {
 
   return (
     <FormikProvider value={formik}>
@@ -22,7 +20,7 @@ export const CommentsForm = () => {
               name="comment"
               aria-label="minimum height"
               rowsMin={5}
-              cols={60}
+              cols={70}
               onChange={formik.handleChange}
               value={formik.values.comment}
               placeholder="Enter your comment" />

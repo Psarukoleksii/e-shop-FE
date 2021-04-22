@@ -9,3 +9,7 @@ export * from './categories';
 export * from './subCategoryWithProducts';
 export * from './productList';
 export * from './rateProduct';
+export * from './commentsList';
+export * from './basketList';
+export * from './slider';
+export * from './homeSections';

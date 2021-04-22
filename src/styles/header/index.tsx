@@ -51,6 +51,9 @@ export const useHeaderStyles = makeStyles((theme: Theme) =>
     },
     icoProfile: {
       width: "100px"
+    },
+    icon: {
+      color: "white"
     }
   }),
 );

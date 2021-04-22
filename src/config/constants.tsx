@@ -18,6 +18,7 @@ export const CONSTANTS = {
   },
 
   product: {
+    basket: 'basket',
     category: 'category',
     name: 'name',
     image: 'image',
@@ -31,7 +32,15 @@ export const CONSTANTS = {
   },
 
   errorMessages: {
-    signInForThisAction: 'for this action'
+    signInForThisAction: 'for this action',
+    enterValidCountOfProduct: "Enter valid count of product"
+  },
+
+  sliderPhoto: ["https://roomester.ru/wp-content/uploads/2018/07/dizajn-magazina-produktov-13.jpg", "https://obarbanza.gal/wp-content/uploads/2020/12/compras-alimentos-supermercado.jpeg"],
+
+  language: {
+    ENGLISH: 'ENGLISH',
+    UKRAINE: 'UKRAINE'
   }
 }
 

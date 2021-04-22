@@ -1,51 +1,47 @@
 import React from 'react';
-import {makeStyles} from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
+import {Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Typography} from '@material-ui/core';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
+import {CONSTANTS} from "../../../config";
+import {useStylesCardProduct} from "../../../styles";
+import {IProductInfo, ICardProduct} from "../../../interfaces";
+import translate from "../../../i18n/translate";
 
-const useStyles = makeStyles({
-  root: {
-    maxWidth: 345,
-    marginTop: 60,
-  },
-  media: {
-    height: 170,
+export const CardProduct = ({items, handleGetIdProduct}: ICardProduct) => {
+
+  const handleAddProductToBasket = (items:IProductInfo) => {
+    const basketLocal = JSON.parse(localStorage.getItem(CONSTANTS.product.basket) as string) || [];
+    basketLocal.push(items);
+    localStorage.setItem(CONSTANTS.product.basket, JSON.stringify(basketLocal));
   }
-});
 
-export const CardProduct = ({image, title, id, handleGetIdProduct}: any) => {
-
-  const classes = useStyles();
+  const classes = useStylesCardProduct();
 
   return (
-      <Card className={classes.root}>
-        <CardActionArea>
-          <CardMedia
-            className={classes.media}
-            image={image}
-            title={title}
-            onClick={()=> handleGetIdProduct(id)}
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
-              {title}
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-        <CardActions>
-          <Button size="small" color="primary" onClick={()=> handleGetIdProduct(id)}>
-            Learn More
-          </Button>
-          <Button size="small" color="primary">
-            <ShoppingBasketIcon />
-          </Button>
-        </CardActions>
-      </Card>
+    <Card className={classes.root}>
+      <CardActionArea>
+        <CardMedia
+          className={classes.media}
+          image={items.image}
+          title={items.name}
+          onClick={() => handleGetIdProduct(items._id)}
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="h2">
+            {items.name}
+          </Typography>
+          <Typography variant="caption" display="block">
+            {items.price} $ / {items.mass} {items.weight}
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+      <CardActions>
+        <Button size="small" color="primary" onClick={() => handleGetIdProduct(items._id)}>
+          {translate("learnMore")}
+        </Button>
+        <Button size="small" color="primary" onClick={() => handleAddProductToBasket(items)}>
+          <ShoppingBasketIcon/>
+        </Button>
+      </CardActions>
+    </Card>
   );
 }

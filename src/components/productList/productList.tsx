@@ -3,8 +3,9 @@ import Grid from "@material-ui/core/Grid";
 import {CardProduct} from "../UI";
 import {useHistory} from "react-router-dom";
 import {ROUTERS} from "../../config";
+import {IProductsList, IProductInfo} from "../../interfaces";
 
-export const ProductList = ({products}:any) => {
+export const ProductList: React.FC<IProductsList> = ({products}:IProductsList) => {
   const history = useHistory();
 
   const handleGetIdProduct = (id:string) => {
@@ -14,10 +15,10 @@ export const ProductList = ({products}:any) => {
   return (
     <>
       {
-        products.map((value: any, index: number) => {
+        products && products.map((value: IProductInfo, index: number) => {
           return (
             <Grid key={index} sm={4}>
-              <CardProduct image={value.image} title={value.name} id={value._id} handleGetIdProduct={handleGetIdProduct}/>
+              <CardProduct items={value} handleGetIdProduct={handleGetIdProduct}/>
             </Grid>
           )
         })

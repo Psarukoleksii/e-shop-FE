@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom';
 import {CONSTANTS, ROUTERS} from "../../config";
 import {useRateProduct} from "../../hooks";
 import {Alert} from "@material-ui/lab";
+import translate from "../../i18n/translate";
 
 const useStyles = makeStyles({
   root: {
@@ -14,15 +15,20 @@ const useStyles = makeStyles({
 });
 
 export const RateProduct = () => {
-  const { addRate, setOpenModal, openModal, valuetext, success } = useRateProduct();
+  const { addRate, setOpenModal, openModal, valuetext, success, rating } = useRateProduct();
 
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <Typography id="discrete-slider)" gutterBottom>
-        Rate this product!
+        {translate("rateProduct")}
       </Typography>
+      {rating &&
+        <Typography>
+        Average product rating - {rating} of 5
+      </Typography>
+      }
       <Slider
         defaultValue={2.5}
         getAriaValueText={valuetext}
@@ -41,7 +47,6 @@ export const RateProduct = () => {
           { success && <Alert severity="success">Rated!</Alert> }
         </Grid>
       </Grid>
-
       <ModalWindow openModal={openModal} setOpenModal={setOpenModal}>
         <Link style={{color: "black"}} to={ROUTERS.authorization}>Sign in</Link> {CONSTANTS.errorMessages.signInForThisAction}
       </ModalWindow>

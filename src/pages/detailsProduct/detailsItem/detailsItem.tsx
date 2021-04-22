@@ -1,36 +1,34 @@
 import React from 'react';
-import {Grid} from "@material-ui/core";
+import {Grid, Typography} from "@material-ui/core";
 import {CommentsForm} from "../commentForm";
-import {RateProduct} from "../../../components";
+import {CommentsList, RateProduct} from "../../../components";
 import {useAddComment} from "../../../hooks";
-import {Alert} from "@material-ui/lab";
+import {DetailsInfoProduct} from "../detailsInfoProduct";
+import {IProductInfo} from "../../../interfaces";
+import translate from "../../../i18n/translate";
 
-export const DetailsItem = ({items}:any) => {
-  const { success } = useAddComment();
+type DetailsItemsProps = {
+  items: IProductInfo;
+}
 
-  console.log(success);
+export const DetailsItem: React.FC<DetailsItemsProps> = ({items}:DetailsItemsProps) => {
+  const { loading, comments, handleMoreComments, success, formik, openModal, setOpenModal } = useAddComment();
 
   return (
     <Grid container direction="column">
-      <Grid container direction="row">
-        <Grid xs={6}>
-          {items.image}
-        </Grid>
-        <Grid xs={6}>
-          <h2>{items.name}</h2>
-          <p>{items.price} $ / {items.mass} {items.weight}</p>
-          <p>Producer: {items.producer}</p>
-        </Grid>
-      </Grid>
+      <DetailsInfoProduct items={items} />
       <Grid container>
         <Grid xs={12}>
           <RateProduct />
         </Grid>
         <Grid xs={6}>
-           <CommentsForm />
+           <CommentsForm formik={formik} setOpenModal={setOpenModal} openModal={openModal} success={success}/>
         </Grid>
         <Grid xs={6}>
-            all comments
+            <Typography variant="h5" gutterBottom>
+              {translate("commentsList")}
+            </Typography>
+            <CommentsList loading={loading} comments={comments} handleMoreComments={handleMoreComments}/>
         </Grid>
       </Grid>
     </Grid>

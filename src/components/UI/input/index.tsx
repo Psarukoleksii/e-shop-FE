@@ -1,9 +1,9 @@
 import React from 'react';
 import TextField from "@material-ui/core/TextField";
 import {CONSTANTS} from "../../../config";
-import {FormControl, FormHelperText} from "@material-ui/core";
+import {FormHelperText} from "@material-ui/core";
 
-export const Input = ({id, name, label, onChange, value, type = CONSTANTS.form.TEXT, errors = {}}: any) => {
+export const Input = ({name, label, onChange, value, type = CONSTANTS.form.TEXT, errors = {}, defaultValue}: any) => {
 
   return (
     <>
@@ -19,6 +19,7 @@ export const Input = ({id, name, label, onChange, value, type = CONSTANTS.form.T
         onChange={onChange}
         value={value}
         aria-describedby="component-error-text"
+        defaultValue={defaultValue}
       />
       <FormHelperText id="component-error">{errors[name]}</FormHelperText>
     </>

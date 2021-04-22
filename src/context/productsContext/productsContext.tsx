@@ -1,24 +1,16 @@
 import React, {useReducer} from 'react';
-import {ADD_SUBCATEGORIES, GET_INFO_ABOUT_PRODUCT, SET_ALL_PRODUCTS} from "../actionType";
+import {ADD_PRODUCT_TO_BASKET} from "../actionType";
 
 const ProductsContext = React.createContext({
-  allProducts: [],
-  detailsOfProduct: [],
-  subCategories: [],
+  basketList: [],
+  contextAddProductToBasket: (product: any) => {}
 });
 
 const reducer = (state: any, action: any) => {
   switch (action.type) {
-    case SET_ALL_PRODUCTS : {
-      return {...state, allProducts: action.payload};
-    }
-    case GET_INFO_ABOUT_PRODUCT : {
-      const id = action.payload;
-      const findProduct = state.allProducts[0].products.find((v: any) => v._id === id);
-      return {...state, detailsOfProduct: [findProduct]};
-    }
-    case ADD_SUBCATEGORIES : {
-      return {...state, subCategories: action.payload};
+    case ADD_PRODUCT_TO_BASKET: {
+      console.log(action.payload);
+      return {...state, basketList: [...state.basketList, action.payload]};
     }
     default : {
       return state;
@@ -28,40 +20,20 @@ const reducer = (state: any, action: any) => {
 
 const ProductsProvider = ({children}: any) => {
   // @ts-ignore
-  const [{allProducts, detailsOfProduct, subCategories}, dispatch] = useReducer<any>(reducer,
-    {allProducts: [], detailsOfProduct: [], subcategories: []});
+  const [{basketList}, dispatch] = useReducer<any>(reducer,
+    {basketList: []});
 
-  const handleAllProducts = (products: any) => {
+  const contextAddProductToBasket = (product: any) => {
     // @ts-ignore
     dispatch({
-      type: SET_ALL_PRODUCTS,
-      payload: products,
-    })
-  };
-
-  const handleGetInfoAboutProduct = (id: string) => {
-    // @ts-ignore
-    dispatch({
-      type: GET_INFO_ABOUT_PRODUCT,
-      payload: id
-    })
-  };
-
-  const handleAddSubcategories = (subcategories: any) => {
-    // @ts-ignore
-    dispatch({
-      type: ADD_SUBCATEGORIES,
-      payload: subcategories
+      type: ADD_PRODUCT_TO_BASKET,
+      payload: product
     })
   };
 
   const providerValues = {
-    allProducts,
-    handleAllProducts,
-    detailsOfProduct,
-    handleGetInfoAboutProduct,
-    subCategories,
-    handleAddSubcategories
+    contextAddProductToBasket,
+    basketList
   };
 
   return <ProductsContext.Provider value={providerValues}>{children}</ProductsContext.Provider>
