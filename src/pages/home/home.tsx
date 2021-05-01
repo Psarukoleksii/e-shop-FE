@@ -1,12 +1,17 @@
 import React from 'react';
-import {SliderSection} from "../../components";
+import {NewProductsList, SliderSection} from "../../components";
 import {Box} from "@material-ui/core";
 
 export const Home = () => {
 
   return (
     <Box>
-      <SliderSection />
+      <Box>
+        <SliderSection />
+      </Box>
+      <Box>
+        <NewProductsList />
+      </Box>
     </Box>
   )
 }

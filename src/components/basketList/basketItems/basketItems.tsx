@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Grid, Typography, Button} from "@material-ui/core";
 import {Input} from "../../UI";
 import {CONSTANTS} from "../../../config";
@@ -18,7 +18,7 @@ export const BasketItems: React.FC<IBasketProductsItem> = ({items, formik, handl
           {items.name}
         </Typography>
       </Grid>
-      <Grid xs={3}>
+      <Grid xs={2}>
         <Input
           type={CONSTANTS.form.NUMBER}
           label={name}
@@ -31,6 +31,9 @@ export const BasketItems: React.FC<IBasketProductsItem> = ({items, formik, handl
       </Grid>
       <Grid xs={1}>
         <Button type="button" onClick={()=> handleDeleteProductFromBasket(items._id)}><DeleteForeverIcon /></Button>
+      </Grid>
+      <Grid xs={1}>
+        {items.price * formik.values[name]} $
       </Grid>
     </Grid>
   )

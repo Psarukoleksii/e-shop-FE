@@ -7,6 +7,8 @@ export default {
     'commentsList': 'Comments list',
     'learnMore': 'Learn more',
     'noComments': 'Nobody wrote any comment...',
-    'rateProduct': 'Rate this product!'
+    'rateProduct': 'Rate this product!',
+    'basket': 'Basket',
+    'basketIsEmpty': 'Basket is empty...'
   }
 }

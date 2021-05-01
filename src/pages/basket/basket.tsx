@@ -2,6 +2,7 @@ import React from 'react';
 import {useGetProductsFromBasket} from "../../hooks";
 import {BasketList, Loading} from "../../components";
 import {Typography} from "@material-ui/core";
+import translate from "../../i18n/translate";
 
 export const Basket = () => {
   const { products, loading, handleDeleteProductFromBasket } = useGetProductsFromBasket()
@@ -11,7 +12,7 @@ export const Basket = () => {
   return (
     <>
       <Typography gutterBottom variant="h3" component="h2">
-        Basket
+        {translate('basket')}
       </Typography>
       {
         products && <BasketList products={products} handleDeleteProductFromBasket={handleDeleteProductFromBasket} />

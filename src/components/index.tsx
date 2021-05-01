@@ -13,3 +13,4 @@ export * from './commentsList';
 export * from './basketList';
 export * from './slider';
 export * from './homeSections';
+export * from './newProductsList';

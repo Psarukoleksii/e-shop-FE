@@ -11,7 +11,7 @@ export const useRateProduct = () => {
   const [success, setSuccess] = useState<boolean>(false);
   const [rating, setRating] = useState<number>();
   const { id }: MatchParams = useParams();
-  console.log(rate);
+
   const addRate = async () => {
     if(!isLoginUser){
       return setOpenModal(true);
@@ -33,12 +33,12 @@ export const useRateProduct = () => {
     if(!data.length){
       return ;
     }
-    setRating(data[0].avg.toFixed(1))
-  }
+    setRating(data[0].avg.toFixed(1));
+  };
 
   useEffect(()=>{
     handleGetRateProduct();
-  }, [])
+  }, []);
 
   return {valuetext, addRate, openModal, setOpenModal, success, rating};
 };
