@@ -6,9 +6,11 @@ import {useDefinitionOrder} from "../../hooks";
 import {CONSTANTS, BUTTON} from "../../config";
 import {IBasketProducts, IProductInfo} from "../../interfaces";
 import {EmptyBasket} from "./emptyBasket";
+import {AuthError} from "../errors";
+import {Order} from "./order";
 
 export const BasketList: React.FC<IBasketProducts> = ({products, handleDeleteProductFromBasket}: IBasketProducts) => {
-  const {formik} = useDefinitionOrder(products);
+  const {formik, loginError, setOpenModal, openModal, wishList, userInformation} = useDefinitionOrder(products);
 
   if(!products.length) return <EmptyBasket/>
 
@@ -20,8 +22,10 @@ export const BasketList: React.FC<IBasketProducts> = ({products, handleDeletePro
                                                                                         formik={formik}
                                                                                         handleDeleteProductFromBasket={handleDeleteProductFromBasket}/>)
         }
-        <Button variant="contained" color="primary" type={BUTTON.SUBMIT}>Buy!</Button>
+        <Button variant="contained" color="primary" type={BUTTON.SUBMIT}>Buy</Button>
       </form>
+      {loginError && <AuthError setOpenModal={setOpenModal} openModal={openModal} />}
+      {!loginError && <Order setOpenModal={setOpenModal} openModal={openModal} wishList={wishList} userInformation={userInformation}/>}
     </FormikProvider>
   )
 }

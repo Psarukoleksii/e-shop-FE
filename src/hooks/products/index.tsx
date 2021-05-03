@@ -5,3 +5,4 @@ export * from './subCategories';
 export * from './subCategoriesProducts.hook';
 export * from'./rateProduct.hook';
 export * from './newProducts.hook';
+export * from './order.hook';

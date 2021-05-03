@@ -7,6 +7,7 @@ import {CONSTANTS, ROUTERS} from "../../config";
 import {useRateProduct} from "../../hooks";
 import {Alert} from "@material-ui/lab";
 import translate from "../../i18n/translate";
+import {AuthError} from "../errors";
 
 const useStyles = makeStyles({
   root: {
@@ -15,7 +16,7 @@ const useStyles = makeStyles({
 });
 
 export const RateProduct = () => {
-  const { addRate, setOpenModal, openModal, valuetext, success, rating } = useRateProduct();
+  const {addRate, setOpenModal, openModal, valuetext, success, rating} = useRateProduct();
 
   const classes = useStyles();
 
@@ -25,7 +26,7 @@ export const RateProduct = () => {
         {translate("rateProduct")}
       </Typography>
       {rating &&
-        <Typography>
+      <Typography>
         Average product rating - {rating} of 5
       </Typography>
       }
@@ -41,15 +42,13 @@ export const RateProduct = () => {
       />
       <Grid container direction="row">
         <Grid>
-          <Button variant="contained" color="primary" onClick={()=> addRate()}>Rate</Button>
+          <Button variant="contained" color="primary" onClick={() => addRate()}>Rate</Button>
         </Grid>
         <Grid style={{marginLeft: 15}}>
-          { success && <Alert severity="success">Rated!</Alert> }
+          {success && <Alert severity="success">Rated!</Alert>}
         </Grid>
       </Grid>
-      <ModalWindow openModal={openModal} setOpenModal={setOpenModal}>
-        <Link style={{color: "black"}} to={ROUTERS.authorization}>Sign in</Link> {CONSTANTS.errorMessages.signInForThisAction}
-      </ModalWindow>
+      <AuthError openModal={openModal} setOpenModal={setOpenModal}/>
     </div>
   )
 }

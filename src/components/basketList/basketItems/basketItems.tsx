@@ -9,7 +9,7 @@ export const BasketItems: React.FC<IBasketProductsItem> = ({items, formik, handl
   const name = items.name;
 
   return (
-    <Grid container>
+    <Grid container justify='center' alignItems='center'>
       <Grid xs={3}>
         {items.image}
       </Grid>
@@ -30,7 +30,7 @@ export const BasketItems: React.FC<IBasketProductsItem> = ({items, formik, handl
         />
       </Grid>
       <Grid xs={1}>
-        <Button type="button" onClick={()=> handleDeleteProductFromBasket(items._id)}><DeleteForeverIcon /></Button>
+        <Button type="button" onClick={()=> handleDeleteProductFromBasket(items._id)}><DeleteForeverIcon style={{color: 'red'}}/></Button>
       </Grid>
       <Grid xs={1}>
         {items.price * formik.values[name]} $
